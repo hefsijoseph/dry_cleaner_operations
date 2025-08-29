@@ -34,7 +34,5 @@ by centralizing operations and introducing automation.
     - PHP (Laravel)
   - Database: MySQL
 
-##### The full implementation is available on GitHub.
-https://github.com/hefsijoseph/"
 
-###### The accompanying portfolio demonstrates my work, created with Reactjs and Tailwind CSS.
+
