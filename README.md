@@ -35,7 +35,7 @@ by centralizing operations and introducing automation.
   - Database: MySQL
 
 
-### Dry cleaning image
+###  Dry Cleaning Process Flow
 
 
 ![Image](https://github.com/user-attachments/assets/279790ce-cb19-4971-9634-ae503fe2aa57)
