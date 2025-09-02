@@ -18,13 +18,13 @@ by centralizing operations and introducing automation.
 
 ####  Key Features and Modules
 
-- Customer Management; Where by customers orders are easy to keep and track the order for a particular customer.
+- Customer Management; Where by customers orders are easy to keep and track the order <br>for a particular customer.
 
-- Order Management and Tracking:The status of order are as follows received, in cleaning, ready for pickup, delivered.
+- Order Management and Tracking:The status of order are as follows received, in cleaning,<br> ready for pickup, delivered.
 
 - Billing and Payments:Handles financial record-keeping.
 
-- Employee Management and Task Assignments: Assignment of cleaning tasks to specific staff members.
+- Employee Management and Task Assignments: Assignment of cleaning tasks<br> to specific staff members.
 
 
 - Technologies Used
@@ -33,6 +33,8 @@ by centralizing operations and introducing automation.
   - Backend
     - PHP (Laravel)
   - Database: MySQL
+  - Web Server
+    - Apache2
 
 
 ###  Dry Cleaning Process Flow :relaxed:
