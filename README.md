@@ -1,4 +1,4 @@
-#  :file_folder: Dry Cleaner Operations Management System ( DCO-MS )
+#  :open_file_folder: Dry Cleaner Operations Management System ( DCO-MS )
 
 
  ##  :pushpin: Project Overview
