@@ -1,7 +1,7 @@
-# Dry Cleaner Operations Management System ( DCO-MS )
+:file_folder: # Dry Cleaner Operations Management System ( DCO-MS )
 
 
-##  Project Overview
+:pushpin: ## Project Overview
 The Dry Cleaner Operations Management System (DC-OMS) is a
 comprehensive, web-based application designed to simplify and automate
 all aspects of a dry cleaning business. This system aims to enhance
