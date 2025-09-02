@@ -8,7 +8,7 @@ all aspects of a dry cleaning business. This system aims to enhance
 efficiency, improve customer satisfaction, reduce manual errors, and
 provide actionable insights for better business management.
 
-### Problem Addressed:
+###  :warning: Problem Addressed:
 Traditional dry cleaning businesses often struggle with manual
 processes, leading to inefficiencies in order tracking, inventory
 management, customer communication, and billing. This can result in
@@ -16,7 +16,7 @@ lost garments, delayed services, inaccurate financial records, and a
 fragmented customer experience. The DC-OMS addresses these pain points
 by centralizing operations and introducing automation.
 
-####  Key Features and Modules
+#### :key: Key Features and :gear: Modules
 
 - Customer Management; Where by customers orders are easy to keep and track the order <br>for a particular customer.
 
@@ -27,7 +27,7 @@ by centralizing operations and introducing automation.
 - Employee Management and Task Assignments: Assignment of cleaning tasks<br> to specific staff members.
 
 
-- Technologies Used
+#### :computer: Technologies Used
   - Frontend
     - HTML/HTML5, CSS/CSS3, JavaScript, Vuejs
   - Backend
@@ -37,7 +37,7 @@ by centralizing operations and introducing automation.
     - Apache2
 
 
-###  Dry Cleaning Process Flow :relaxed:
+#####  Dry Cleaning Process Flow :relaxed:
 
 ![Image](https://github.com/user-attachments/assets/279790ce-cb19-4971-9634-ae503fe2aa57)
 
