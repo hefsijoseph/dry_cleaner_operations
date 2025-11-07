@@ -39,7 +39,7 @@ by centralizing operations and introducing automation.
 
 #####  Dry Cleaning Process Flow :relaxed:
 
-![Image](https://github.com/user-attachments/assets/279790ce-cb19-4971-9634-ae503fe2aa57)
+![Image](https://github.com/user-attachments/assets/32cabeb1-7df5-42cc-ac30-048ce69d8e1a)
 
 
 
