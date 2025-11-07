@@ -13,28 +13,58 @@
 <body>
   <header class="header">
     <nav class="navbar">
-      <!-- <h1>Dry Cleaners Operations <br> Management System</h1> -->
       <div>
-        {{-- <a href="#home">About Us</a> --}}
         <a href="#news" class="news">News</a>
-        {{-- <a href="#contact">Contact</a> --}}
-        <!-- <h3>Welcome</h3> -->
       </div>
-      <img src="images/avatar.png" alt="avatar"
-        style="margin-left:300px;  width: 90px; height: 90px; object-fit: cover; border-radius: 50%;">
-    
-      <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M6 9l6 6l6 -6" />
-        </svg>
+        <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: red" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+       <img src="images/avatar.png" alt="avatar"
+        style=""/>
         
-        </a>
-        
+{{--     
+        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M6 9l6 6l6 -6" />
+                </svg></a> --}}
+     <div>
+     </div>
+         
     </nav>
 
   </header>
+
+
+  
 
   <aside class="sidenav">
     <h2>DCO-MS</h2>
@@ -177,17 +207,20 @@
       </div>
     </div>
   </aside>
+<div class="page-container">
 
   <main class="main">
  
     @yield('content')
- 
+
 
   </main>
 
   <footer class="footer">
     <p>Copright 2025 Designed and Created by Hefsi</p>
   </footer>
+</div>
+
 </body>
 
 <!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidenav_fixed by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Sep 2022 14:31:11 GMT -->
