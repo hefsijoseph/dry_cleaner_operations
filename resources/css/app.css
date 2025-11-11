@@ -224,7 +224,7 @@ body,html {
     color: #f1f1f1;
   }
 
-  .active {
+  .open {
     width:260px;
     height:60px;
     /* background: linear-gradient(

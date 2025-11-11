@@ -25,13 +25,13 @@ for (i = 0; i < dropdown.length; i++) {
     for (var j = 0; j < allDropdowns.length; j++) {
       allDropdowns[j].style.display = "none";
       // This is the key change: remove active class from all buttons
-      dropdown[j].classList.remove("active");
+      dropdown[j].classList.remove("open");
     }
 
     // Now, if the current dropdown was not already open, open it and add the 'active' class
     if (!isCurrentOpen) {
       currentDropdownContent.style.display = "block";
-      this.classList.add("active");
+      this.classList.add("open");
     }
   });
 }

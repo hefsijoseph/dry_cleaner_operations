@@ -10,34 +10,49 @@
     @vite('resources/js/app.js')
     
 
- <style>
-/* Standardize the dimensions and alignment for ALL page buttons/spans */
-.pagination .page-item .page-link,
-.pagination .page-item.active span {
-    /* 1. Standardize padding across the board */
-    padding: 0.375rem 0.75rem !important; 
+<style>
+/* 1. CLEAN UP THE PARENT CONTAINER (to remove the 'green' bleed) */
+.pagination .page-item.active {
+    /* Set background and border to transparent or none on the parent */
+    background: transparent !important;
+    border: none !important;
+}
 
+/* 2. TARGET AND STYLE THE ACTIVE CHILD ELEMENT (the span) */
+.pagination .page-item.active span {
+    /* Color Fix: Force a single, opaque background (Bootstrap blue) */
+    background-color: #0d6efd !important; 
+    border-color: #0d6efd !important;
+    color: #fff !important; 
     
+    /* Ensure no unwanted shadowing is applied */
+    box-shadow: none !important;
+
+    /* Sizing Fix: Standardize width, padding, and use flex for perfect alignment */
+    min-width: 40px !important; 
+    padding: 0.375rem 0.75rem !important; 
     
-    /* 2. Force a minimum width to handle single-digit numbers uniformly */
-    min-width: 40px; /* Adjust this value if your buttons are larger/smaller */
-    
-    /* 3. Use flex to align the content (the number) perfectly center */
+    /* Alignment Fix */
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
 
-/* Ensure no accidental margins are pushing the elements apart */
+/* 3. ENSURE ALL OTHER LINKS ARE THE SAME SIZE */
+.pagination .page-item .page-link {
+    /* Sizing and Alignment Match */
+    min-width: 40px !important; 
+    padding: 0.375rem 0.75rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 4. Tidy up margins */
 .pagination .page-item {
     margin: 0;
 }
 
-/* Ensure the SVG arrows are also aligned and sized correctly */
-.pagination .page-item .page-link svg {
-    width: 1rem !important;
-    height: 1rem !important;
-}
 </style>
 </head>
 
