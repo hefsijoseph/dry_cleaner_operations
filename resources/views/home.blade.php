@@ -13,42 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                      <table class="table table-striped table-bordered">
-                      <thead>
-                      <tr>
-                      <th>ID</th>
-                       <th>Name</th>
-                       <th>Email</th>
-                       <th>Address</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                      <td>1</td>
-                      <td>pina</td>
-                      <td>pina@gmail.com</td>
-                      <td>jr</td>
-                      </tr>
-                      <tr>
-                      <td>1</td>
-                      <td>pina</td>
-                      <td>pina@gmail.com</td>
-                      <td>jr</td>
-                      </tr>
-                      <tr>
-                      <td>1</td>
-                      <td>pina</td>
-                      <td>pina@gmail.com</td>
-                      <td>jr</td>
-                      </tr>
-                      <tr>
-                      <td>1</td>
-                      <td>pina</td>
-                      <td>pina@gmail.com</td>
-                      <td>jr</td>
-                      </tr>
-                      </tbody>
-                      </table>
+                   <p>Welcome...</p>
                     
                 </div>
             </div>
