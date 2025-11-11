@@ -85,7 +85,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="http://127.0.0.1:5500/build/inde.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('employees.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -93,7 +93,7 @@
             <path d="M9 12h6" />
             <path d="M12 9v6" />
           </svg> Add </a>
-        <a href="http://127.0.0.1:5500/build/ndex.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('employees.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -111,7 +111,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="http://127.0.0.1:5500/build/indx.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('customers.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -119,7 +119,7 @@
             <path d="M9 12h6" />
             <path d="M12 9v6" />
           </svg>Add</a>
-          <a href="http://127.0.0.1:5500/build/ndex.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+          <a href="{{ route('customers.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -128,11 +128,43 @@
           </svg>View</a>
       </div>
 
+
+
+           <button class="dropdown-btn"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-menu-order">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 10h16" />
+          <path d="M4 14h16" />
+          <path d="M9 18l3 3l3 -3" />
+          <path d="M9 6l3 -3l3 3" />
+        </svg>Item
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="{{ route('items.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+            <path d="M9 12h6" />
+            <path d="M12 9v6" />
+          </svg>Add</a>
+        <a href="{{ route('items.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+          </svg>View</a>
+        <a href="http://127.0.0.1:5500/build/idex.html">Assigned Order</a>
+      </div>
+
         <button class="dropdown-btn"> <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-address-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z" /><path d="M10 16h6" /><path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M4 8h3" /><path d="M4 12h3" /><path d="M4 16h3" /></svg>Address
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="http://127.0.0.1:5500/build/inde.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('addresses.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -140,7 +172,7 @@
             <path d="M9 12h6" />
             <path d="M12 9v6" />
           </svg> Add </a>
-        <a href="http://127.0.0.1:5500/build/ndex.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('addresses.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -160,7 +192,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
-        <a href="http://127.0.0.1:5500/build/ix.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('orders.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -168,7 +200,7 @@
             <path d="M9 12h6" />
             <path d="M12 9v6" />
           </svg>Add</a>
-        <a href="http://127.0.0.1:5500/build/inde.html"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+        <a href="{{ route('orders.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />

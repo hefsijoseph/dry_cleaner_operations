@@ -11,12 +11,12 @@ class Employee extends Model
     use HasFactory;
 
        protected $fillable = [
-        'email',
-        'password',
         'first_name',
         'middle_name',
         'last_name',
+        'email',
         'phone',
+        'password',
         'employee_id',
         'address_id',
     ];
