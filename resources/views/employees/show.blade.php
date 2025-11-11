@@ -6,7 +6,7 @@
         <div class="col-md-10"> 
             <div class="card">
 
-                <div class="card-header">Show employee</div>
+                <div class="card-header">Show employee <strong>{{ $employee->first_name }}  {{ $employee->last_name }}</strong></div>
 
                 <div class="card-body">
                     <a href="{{ route('employees.index')}}" class="btn btn-info">Back</a>

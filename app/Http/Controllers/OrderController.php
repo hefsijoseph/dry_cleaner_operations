@@ -36,7 +36,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           $validatedData = $request->validate([
+        'order_name'  => 'required|string|max:50',
+        // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
+        'item_id'  => 'required|integer|exists:items,id',
+         'customer_id'  => 'required|integer|exists:customers,id',
+         'employee_id'  => 'required|integer|exists:employees,id',
+    ]);
+
+    Order::create($validatedData);
+
+    // 4. Redirect with a success message
+    return redirect()->route('orders.index')->with('success', 'Order created successfully!');
     }
 
     /**
@@ -54,7 +65,10 @@ class OrderController extends Controller
     public function edit(string $id)
     {
         $order = Order::findOrFail($id);
-        return view("orders.edit", compact("order"));
+        $items = Item::all();
+        $customers = Customer::all();
+        $employees = Employee::all();
+        return view("orders.edit", compact("order","items","customers", "employees"));
     }
 
     /**
@@ -62,7 +76,22 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $order = Order::findOrFail($id);
+         $validatedData = $request->validate([
+        'order_name'  => 'required|string|max:50',
+        // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
+        'item_id'  => 'required|integer|exists:items,id',
+         'customer_id'  => 'required|integer|exists:customers,id',
+         'employee_id'  => 'required|integer|exists:employees,id',
+    ]);
+
+
+    $order->update($validatedData);
+
+    // 5️⃣ Redirect with success message
+    return redirect()
+        ->route('orders.index')
+        ->with('success', 'Order updated successfully!');
     }
 
     /**

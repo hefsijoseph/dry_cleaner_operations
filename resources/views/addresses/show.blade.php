@@ -6,7 +6,7 @@
         <div class="col-md-10"> 
             <div class="card">
 
-                <div class="card-header">Show Address</div>
+                <div class="card-header">Show Address <strong>{{ $address->address }}</strong> </div>
 
                 <div class="card-body">
                     <a href="{{ route('addresses.index')}}" class="btn btn-info">Back</a>

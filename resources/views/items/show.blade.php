@@ -6,7 +6,7 @@
         <div class="col-md-10"> 
             <div class="card">
 
-                <div class="card-header">Show item</div>
+                <div class="card-header">Show item <strong>{{ $item->title }}</strong></div>
 
                 <div class="card-body">
                     <a href="{{ route('items.index')}}" class="btn btn-info">Back</a>

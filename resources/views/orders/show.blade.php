@@ -6,7 +6,7 @@
         <div class="col-md-10"> 
             <div class="card">
 
-                <div class="card-header">Show Order</div>
+                <div class="card-header">Show Order for <strong>{{ $order->item->title }}</strong> </div>
 
                 <div class="card-body">
                     <a href="{{ route('orders.index')}}" class="btn btn-info">Back</a>
