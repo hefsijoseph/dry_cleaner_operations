@@ -8,6 +8,37 @@
   {{-- <script src="../js/script.js" defer></script> --}}
   {{-- script --}}
     @vite('resources/js/app.js')
+    
+
+ <style>
+/* Standardize the dimensions and alignment for ALL page buttons/spans */
+.pagination .page-item .page-link,
+.pagination .page-item.active span {
+    /* 1. Standardize padding across the board */
+    padding: 0.375rem 0.75rem !important; 
+
+    
+    
+    /* 2. Force a minimum width to handle single-digit numbers uniformly */
+    min-width: 40px; /* Adjust this value if your buttons are larger/smaller */
+    
+    /* 3. Use flex to align the content (the number) perfectly center */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure no accidental margins are pushing the elements apart */
+.pagination .page-item {
+    margin: 0;
+}
+
+/* Ensure the SVG arrows are also aligned and sized correctly */
+.pagination .page-item .page-link svg {
+    width: 1rem !important;
+    height: 1rem !important;
+}
+</style>
 </head>
 
 <body>
