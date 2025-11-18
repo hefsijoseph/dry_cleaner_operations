@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Customer;
+// use App\Models\Customer;
 
 use App\Models\Order;
 use App\Models\Payment;
@@ -25,7 +25,7 @@ class PaymentFactory extends Factory
         return [
             // 1. Item Weight (Numerical/Decimal)
         // Generates a float between 0.5 and 50.0 with 2 decimal places.
-        'item_weight_kg' => $this->faker->randomFloat(2, 0.5, 50), 
+        // 'item_weight_kg' => $this->faker->randomFloat(2, 0.5, 50), 
         
         // 2. Cost (Numerical/Decimal for currency)
         // Generates a float representing currency (e.g., 12.55 to 999.99).
@@ -36,7 +36,7 @@ class PaymentFactory extends Factory
         'is_paid' => $this->faker->boolean(70), // 70% chance of being TRUE (paid)
 
         'order_id' => Order::inRandomOrder()->first()->id,
-        'customer_id' => Customer::inRandomOrder()->first()->id,
+        // 'customer_id' => Customer::inRandomOrder()->first()->id,
         ];
     }
 }

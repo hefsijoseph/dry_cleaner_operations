@@ -44,9 +44,13 @@
                             <form action="{{ route('customers.destroy', $customer->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="{{ route('customers.edit' , $customer->id )}}" class="btn btn-primary btn-sm">Edit</a>
-                              <a href="{{ route('customers.show' , $customer->id )}}"  class="btn btn-info btn-sm">Show</a>
-                            <button  class="btn btn-danger btn-sm">delete</button></form>
+                             
+                                <a href="{{ route('customers.edit' , $customer->id )}}" class="btn btn-primary btn-sm">Edit</a>
+                             
+                                <a href="{{ route('customers.show' , $customer->id )}}"  class="btn btn-info btn-sm">Show</a>
+                            
+                             <button  class="btn btn-danger btn-sm">delete</button></form>
+                         
                             </td>
                       </tr>
                       @endforeach

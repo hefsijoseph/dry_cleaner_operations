@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('order_name');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
+              $table->decimal('item_weight_kg', 8, 3);
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->timestamps();

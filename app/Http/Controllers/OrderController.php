@@ -28,7 +28,7 @@ class OrderController extends Controller
         $items = Item::all();
         $customers = Customer::all();
         $employees = Employee::all();
-        return view("orders.create", compact("customers", "employees", "items"));
+        return view("orders.create", compact("items","customers", "employees"));
     }
 
     /**
@@ -42,6 +42,8 @@ class OrderController extends Controller
         'item_id'  => 'required|integer|exists:items,id',
          'customer_id'  => 'required|integer|exists:customers,id',
          'employee_id'  => 'required|integer|exists:employees,id',
+         // **REQUIRED FIX: Add validation rule for the new field**
+        'item_weight_kg' => 'required|numeric|min:0',
     ]);
 
     Order::create($validatedData);

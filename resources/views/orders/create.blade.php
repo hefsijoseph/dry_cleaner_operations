@@ -34,6 +34,13 @@
                             @enderror
                         </div>
                         <div class="mt-2">
+                            <label for="item_weight_kg">Item Weight (kg):</label>
+                            <input type="number" step="0.01" class="form-control" name="item_weight_kg" required>
+                            @error('item_weight_kg')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mt-2">
                             <label for="">Customers:</label>
                             <select name="customer_id" id="" class="form-control">
                                 <option value="" disabled>-- Select customer --</option>

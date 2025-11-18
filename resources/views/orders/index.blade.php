@@ -9,49 +9,52 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-  
 
-           @session('success')
-        <div class="alert alert-success">
-        {{ $value }}
-        </div>
-        @endsession 
-                      {{-- <a href="{{ route('customers.create') }}" class="btn btn-success mb-2">Create customer</a> --}}
-                      <table class="table table-striped table-bordered">
-                      <thead>
-                      <tr>
-                       <th>Order name</th>
-                       <th>Customer owner</th>
-                       <th>Assigned to</th>
-                       <th>Actions</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      @foreach($orders as $key => $order)
-                         <tr>
-                      {{-- <td>{{ $customer->id }}</td>
-                      <td>{{ $customer->email }}</td> --}}
-                      <td>{{ $order->order_name }}</td>
-                       <td>{{ $order->customer->name }}</td>
-                      <td>{{ $order->employee->first_name }}  {{ $order->employee->last_name }}</td>
-                       <td>
-                            <form action="{{ route('orders.destroy', $order->id) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <a href="{{ route('orders.edit' , $order->id )}}" class="btn btn-primary btn-sm">Edit</a>
-                              <a href="{{ route('orders.show' , $order->id )}}"  class="btn btn-info btn-sm">Show</a>
-                            <button  class="btn btn-danger btn-sm">delete</button></form>
-                            </td>
-                      </tr>
-                      @endforeach
-                     
-                      </tbody>
-                      </table>
-                       {{ $orders->links() }}
+
+                    @session('success')
+                    <div class="alert alert-success">
+                        {{ $value }}
+                    </div>
+                    @endsession
+                    {{-- <a href="{{ route('customers.create') }}" class="btn btn-success mb-2">Create customer</a> --}}
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order name</th>
+                                <th>Customer owner</th>
+                                <th>Assigned to</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($orders as $key => $order)
+                            <tr>
+                                {{-- <td>{{ $customer->id }}</td>
+                                <td>{{ $customer->email }}</td> --}}
+                                <td>{{ $order->order_name }}</td>
+                                <td>{{ $order->customer->name }}</td>
+                                <td>{{ $order->employee->first_name }} {{ $order->employee->last_name }}</td>
+                                <td>
+                                    <form action="{{ route('orders.destroy', $order->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="{{ route('orders.edit' , $order->id )}}" class="btn btn-primary btn-sm">Edit</a>
+                                        
+                                        <a href="{{ route('orders.show' , $order->id )}}" class="btn btn-info btn-sm">Show</a>
+                                        
+                                        <button class="btn btn-danger btn-sm">delete</button></form>
+                                  
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                    {{ $orders->links() }}
                 </div>
             </div>
         </div>

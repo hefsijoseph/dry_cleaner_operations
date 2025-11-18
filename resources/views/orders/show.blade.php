@@ -13,6 +13,7 @@
                      <p><strong>Id: </strong>{{ $order->id }}</p>
                      <p><strong>Order name: </strong>{{ $order->order_name }}</p>
                       <p><strong>Item title: </strong>{{ $order->item->title }}</p>
+                       <p><strong>Order_weight_in_kg: </strong>{{ $order->item_weight_kg }}</p>
                        <p><strong>Item description: </strong>{{ $order->item->description }}</p>
                      <p><strong>Customer: </strong>{{ $order->customer->name }}</p>
                      <p><strong>Assigned to: </strong>{{ $order->employee->first_name }}  {{ $order->employee->last_name }}</p>

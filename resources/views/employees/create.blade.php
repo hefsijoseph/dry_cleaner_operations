@@ -95,6 +95,23 @@
                             @enderror
                         </div>
 
+                         <div class="mt-2">
+                            <label for="role_id">Roles:</label>
+                            <select name="roles[]" id="role_id" class="form-control" **required** multiple>
+                                {{-- Set the value to NULL (or keep it empty) and remove 'selected' --}}
+                                {{-- The 'disabled' attribute prevents it from being selected via script --}}
+                                <option value="" disabled>-- Select address --</option>
+
+                                @foreach($roles as $key => $role)
+                                {{-- Make sure you're using the correct ID column here (most likely $address->id) --}}
+                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('role_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         {{-- Submit --}}
                         <div class="mt-3">
                             <button type="submit" class="btn btn-success">Submit</button>

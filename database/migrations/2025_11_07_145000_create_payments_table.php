@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->decimal('item_weight_kg', 8, 3);
             $table->decimal('cost', 9, 3);
             $table->boolean('is_paid')->default(false);
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
-             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

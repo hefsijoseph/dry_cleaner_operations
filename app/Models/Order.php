@@ -12,6 +12,7 @@ class Order extends Model
         
         'order_name',
         'item_id',
+        'item_weight_kg',
         'customer_id',
         'employee_id',
     ];
@@ -32,7 +33,7 @@ class Order extends Model
         return $this->belongsTo(Employee::class);
     }
 
-      public function payment(){
+      public function payments(){
         return $this->hasMany(Payment::class);
     }
 }

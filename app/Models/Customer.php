@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Customer extends Model
+// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Use Authenticatable base class
+class Customer extends Authenticatable // or extends User
 {
     /** @use HasFactory<\Database\Factories\CustomerFactory> */
     use HasFactory;
@@ -16,6 +16,14 @@ class Customer extends Model
         'password',
         'phone',
         'address_id',
+    ];
+
+
+
+     // Ensure you hide the password field
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function address(){

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Addresses</div>
+                <div class="card-header">Roles</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,48 +13,45 @@
                         {{ session('status') }}
                     </div>
                     @endif
+
+
                     @session('success')
                     <div class="alert alert-success">
                         {{ $value }}
                     </div>
                     @endsession
-                    @session('added')
-                    <div class="alert alert-success">
-                        {{ $value }}
-                    </div>
-                    @endsession
+                    {{-- <a href="{{ route('customers.create') }}" class="btn btn-success mb-2">Create customer</a> --}}
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Address</th>
-                                <th>Action</th>
+                                <th width="60px">Id</th>
+                                <th>Name</th>
+                                <th width="300px">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($addresses as $key => $address)
+                            @foreach($roles as $key => $role)
                             <tr>
-                                <td>{{ $address->address }}</td>
+                                <td>{{ $role->id }}</td>
+                                <td>{{ $role->name }}</td>
                                 <td>
-                                    <form action="{{ route('addresses.destroy', $address->id) }}" method="post">
+                                    <form action="{{ route('roles.destroy', $role->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                     
-
-
-                                        <a href="{{ route('addresses.edit' , $address->id )}}" class="btn btn-primary btn-sm">Edit</a>
+                                        
+                                        <a href="{{ route('roles.edit' , $role->id )}}" class="btn btn-primary btn-sm">Edit</a>
                                        
+                                        <a href="{{ route('roles.show' , $role->id )}}" class="btn btn-info btn-sm">Show</a>
                                        
-                                        <a href="{{ route('addresses.show' , $address->id )}}" class="btn btn-info btn-sm">Show</a>
-
                                         <button class="btn btn-danger btn-sm">delete</button></form>
-                                    {{-- @endcan --}}
+                                    
                                 </td>
                             </tr>
                             @endforeach
 
                         </tbody>
                     </table>
-
+                    {{-- {{ $s->links() }} --}}
                 </div>
             </div>
         </div>

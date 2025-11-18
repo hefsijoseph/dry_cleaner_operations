@@ -40,6 +40,19 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+
+        // === NEW GUARDS ===
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees', // Uses the 'employees' provider/table
+        ],
+
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers', // Uses the 'customers' provider/table
+        ],
+        // =====================
     ],
 
     /*
@@ -69,6 +82,21 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+
+
+
+        // === NEW PROVIDERS ===
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
+
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class,
+        ],
+        // =====================
     ],
 
     /*

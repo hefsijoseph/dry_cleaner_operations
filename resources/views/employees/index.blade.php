@@ -9,46 +9,68 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
-                        @session('success')
-        <div class="alert alert-success">
-        {{ $value }}
-        </div>
-        @endsession 
-                      <table class="table table-striped table-bordered">
-                      <thead>
-                      <tr>
-                      {{-- <th>ID</th> --}}
-                       <th>Username</th>
-                       <th>Email</th>
-                       {{-- <th>Phone</th>
-                       <th>Address</th> --}}
-                       <th>Action</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      @foreach($employees as $key => $employee)
-                         <tr>
-                    <td>{{ $employee->first_name }}  {{ $employee->last_name }}</td>
-                      <td>{{ $employee->email }}</td>
-                     <td>
-                            <form action="{{ route('employees.destroy', $employee->id) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <a href="{{ route('employees.edit' , $employee->id )}}" class="btn btn-primary btn-sm">Edit</a>
-                              <a href="{{ route('employees.show' , $employee->id )}}"  class="btn btn-info btn-sm">Show</a>
-                            <button  class="btn btn-danger btn-sm">delete</button></form>
-                            </td>
-                      </tr>
-                      @endforeach
-                     
-                      </tbody>
-                      </table>
-                     {{ $employees->links() }}
+                    @session('success')
+                    <div class="alert alert-success">
+                        {{ $value }}
+                    </div>
+                    @endsession
+                    <table class="table table-striped table-bordered">
+                        {{-- {{ dd(Auth::guard('employee')->check(), Auth::guard('employee')->user());
+}} --}}
+                        <thead>
+                            <tr>
+                                {{-- <th>ID</th> --}}
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($employees as $key => $employee)
+                            <tr>
+                                <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
+                                <td>{{ $employee->email }}</td>
+                                <td>
+                                    @foreach($employee->getRoleNames() as $key => $role)
+                                    <button class="btn btn-success btn-sm">
+                                        {{ $role }}
+                                    </button>
+                                    @endforeach
+                                </td>
+                                <td>
+
+                                    Logged in employee: {{ $authEmployee->name ?? 'null' }}<br>
+                                    Has edit permission? {{ $authEmployee->can('employee-edit') ? 'yes' : 'no' }}@php $authEmployee = Auth::guard('employee')->user(); @endphp
+
+                                    @can('employee-edit',$authEmployee)
+                                    <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    @endcan
+
+                                    @can('employee-list', $authEmployee)
+                                    <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm">Show</a>
+                                    @endcan
+
+                                    @can('employee-delete', $authEmployee)
+                                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                    @endcan
+
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                    {{ $employees->links() }}
                 </div>
             </div>
         </div>

@@ -38,9 +38,13 @@
                             <form action="{{ route('items.destroy', $item->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <a href="{{ route('items.edit' , $item->id )}}" class="btn btn-primary btn-sm">Edit</a>
-                              <a href="{{ route('items.show' , $item->id )}}"  class="btn btn-info btn-sm">Show</a>
-                            <button  class="btn btn-danger btn-sm">delete</button></form>
+                            
+                                <a href="{{ route('items.edit' , $item->id )}}" class="btn btn-primary btn-sm">Edit</a>
+                            
+                                <a href="{{ route('items.show' , $item->id )}}"  class="btn btn-info btn-sm">Show</a>
+                            
+                                <button  class="btn btn-danger btn-sm">delete</button></form>
+                           
                             </td>
                       </tr>
                       @endforeach
