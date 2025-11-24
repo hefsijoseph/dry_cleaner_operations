@@ -38,16 +38,17 @@
                                     <form action="{{ route('addresses.destroy', $address->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                     
 
 
+                                        @can('address-edit',$authEmployee)
                                         <a href="{{ route('addresses.edit' , $address->id )}}" class="btn btn-primary btn-sm">Edit</a>
-                                       
-                                       
+                                        @endcan
+                                        @can('address-list',$authEmployee)
                                         <a href="{{ route('addresses.show' , $address->id )}}" class="btn btn-info btn-sm">Show</a>
-
+                                        @endcan
+                                        @can('address-delete',$authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>
-                                    {{-- @endcan --}}
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach

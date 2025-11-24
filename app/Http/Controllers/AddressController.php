@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
@@ -13,7 +14,8 @@ class AddressController extends Controller
     public function index()
     {
         $addresses = Address::latest()->get();
-        return view("addresses.index", compact("addresses"));
+         $authEmployee = Auth::guard('employee')->user();
+        return view("addresses.index", compact("addresses","authEmployee"));
     }
 
     /**

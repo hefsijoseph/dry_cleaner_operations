@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -15,7 +16,8 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::with('address')->orderBy('created_at','desc')->paginate(15);
-        return view("customers.index", compact("customers"));
+         $authEmployee = Auth::guard('employee')->user();
+        return view("customers.index", compact("customers","authEmployee"));
     }
 
     /**

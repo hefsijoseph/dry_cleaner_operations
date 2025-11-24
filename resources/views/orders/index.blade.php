@@ -42,12 +42,15 @@
                                     <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                                         @csrf
                                         @method('delete')
+                                         @can('order-edit',$authEmployee)
                                         <a href="{{ route('orders.edit' , $order->id )}}" class="btn btn-primary btn-sm">Edit</a>
-                                        
+                                        @endcan
+                                         @can('order-list',$authEmployee)
                                         <a href="{{ route('orders.show' , $order->id )}}" class="btn btn-info btn-sm">Show</a>
-                                        
+                                        @endcan
+                                         @can('order-delete',$authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>
-                                  
+                                  @endcan
                                 </td>
                             </tr>
                             @endforeach

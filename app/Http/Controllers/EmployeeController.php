@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      * Display a listing of the resource.
      * 
      */
-    public function index()
+    public function index(Request $request)
     {
 
         // Get the authenticated employee
@@ -29,10 +29,17 @@ class EmployeeController extends Controller
         // Debug: list all permissions of this employee
         // dd($employee->getAllPermissions()->pluck('name'));
 
-        $employees = Employee::with('address')->orderBy('created_at', 'desc')->paginate(15);
+        // $employees = Employee::with('address')->orderBy('created_at', 'desc')->paginate(15);
         // Pass the logged-in employee explicitly
+
+        $search = $request->search;
+
+        $employees = Employee::with('address')       // load relation
+            ->search($search)                        // apply search scope
+            ->orderBy('created_at', 'desc')          // sort employees
+            ->paginate(10);                          // paginate results
         $authEmployee = Auth::guard('employee')->user();
-        return view("employees.index", compact("employees", "authEmployee"));
+        return view("employees.index", compact("employees", "authEmployee","search"));
     }
 
     /**
@@ -146,4 +153,19 @@ class EmployeeController extends Controller
         $employee->delete();
         return redirect()->route("employees.index")->with("success", "Employee deleted.");
     }
+
+
+    public function liveSearch(Request $request)
+{
+    $search = $request->search;
+
+    $employees = Employee::with('address')
+        ->search($search)
+        ->orderBy('created_at', 'desc')
+        ->take(20) // return limited results for speed
+        ->get();
+
+    return response()->json($employees);
+}
+
 }

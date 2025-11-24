@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse; // Optional type hinting
 use App\Http\Requests\StorePaymentRequest; // <--- ADD THIS LINE
 use App\Http\Requests\UpdatePaymentRequest;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -18,7 +19,8 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::with('order')->orderBy('created_at', 'desc')->paginate(15);
-        return view("payments.index", compact("payments"));
+         $authEmployee = Auth::guard('employee')->user();
+        return view("payments.index", compact("payments", "authEmployee"));
     }
 
     /**

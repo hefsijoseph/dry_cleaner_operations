@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -15,7 +15,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view("roles.index", compact("roles"));
+        $authEmployee = Auth::guard('employee')->user();
+        return view("roles.index", compact("roles", "authEmployee"));
     }
 
     /**

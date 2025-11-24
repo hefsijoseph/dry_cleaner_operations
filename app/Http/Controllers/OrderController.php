@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Item;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,7 +18,8 @@ class OrderController extends Controller
     {
         // $orders = Order::all();
         $orders = Order::with('item','customer','employee')->orderBy('created_at','desc')->paginate(15);
-        return view("orders.index", compact("orders"));
+         $authEmployee = Auth::guard('employee')->user();
+        return view("orders.index", compact("orders","authEmployee"));
     }
 
     /**

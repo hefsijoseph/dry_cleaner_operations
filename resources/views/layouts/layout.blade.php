@@ -78,7 +78,9 @@
                 @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: red" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
+                      {{ Auth::guard('employee')->user()->full_name }}
+
+
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -95,11 +97,7 @@
             </ul>
             <img src="images/avatar.png" alt="avatar" style="" />
 
-            {{--
-        <a href="#!"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M6 9l6 6l6 -6" />
-                </svg></a> --}}
+      
             <div>
             </div>
 

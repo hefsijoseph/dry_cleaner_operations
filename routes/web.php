@@ -40,19 +40,61 @@ Route::get('/customers', [CustomerController::class, 'index'])
     ->middleware('auth:customer')
     ->name('customers.index');
 
-Auth::routes();
+Auth::routes([
+    'register' => 'False',
+]);
+
+Route::get('/login', function () {
+    return redirect('/employees/login');
+})->name('login');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource("roles", RoleController::class);
-Route::resource("addresses", AddressController::class);
+// Route::resource("roles", RoleController::class);
+Route::middleware(['auth:employee'])->group(function () {
+    Route::resource('roles', RoleController::class);
+});
+
+
+// Route::resource("addresses", AddressController::class);
+
+Route::middleware(['auth:employee'])->group(function () {
+    Route::resource('addresses', AddressController::class);
+});
+
 Route::middleware(['auth:employee'])->group(function () {
     Route::resource('employees', EmployeeController::class);
 });
-Route::resource("customers", CustomerController::class);
-Route::resource("items", ItemController::class);
-ROute::resource("orders", OrderController::class);
-Route::resource("payments", PaymentController::class);
+
+// Route::resource("customers", CustomerController::class);
+Route::middleware(['auth:employee'])->group(function () {
+    Route::resource('customers', CustomerController::class);
+});
+
+
+// Route::resource("items", ItemController::class);
+
+
+Route::middleware(['auth:employee'])->group(function () {
+    Route::resource('items', ItemController::class);
+});
+
+
+// Route::resource("orders", OrderController::class);
+Route::middleware(['auth:employee'])->group(function () {
+    Route::resource('orders', OrderController::class);
+});
+
+
+// Route::resource("payments", PaymentController::class);
+Route::middleware(['auth:employee'])->group(function () {
+    Route::resource('payments', PaymentController::class);
+});
+
+
 Route::get('get-customer-for-order/{order}', [PaymentController::class, 'getCustomerByOrder'])
     ->name('payments.get_customer');
 
+Route::get('/employees/live-search', [EmployeeController::class, 'liveSearch'])
+    ->name('employees.live-search');

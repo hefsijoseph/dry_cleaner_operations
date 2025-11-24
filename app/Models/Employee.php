@@ -50,5 +50,28 @@ class Employee extends Authenticatable // or extends User
        public function orders(){
         return $this->hasMany(Order::class);
     }
+
+
+public function scopeSearch($query, $search)
+{
+    if (!empty($search)) {
+        $query->where(function ($q) use ($search) {
+            $q->where('first_name', 'LIKE', "%{$search}%")
+              ->orWhere('middle_name', 'LIKE', "%{$search}%")
+              ->orWhere('last_name', 'LIKE', "%{$search}%")
+              ->orWhere('email', 'LIKE', "%{$search}%")
+              ->orWhere('phone', 'LIKE', "%{$search}%")
+              ->orWhere('employee_id', 'LIKE', "%{$search}%");
+        });
+    }
+
+    return $query;
+}
+
+
+public function getFullNameAttribute()
+{
+    return $this->first_name . ' ' . $this->last_name;
+}
     
 }

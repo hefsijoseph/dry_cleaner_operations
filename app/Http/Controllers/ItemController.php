@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -13,7 +14,8 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::orderBy('created_at','desc')->paginate(15);
-        return view("items.index", compact("items"));
+         $authEmployee = Auth::guard('employee')->user();
+        return view("items.index", compact("items","authEmployee"));
     }
 
     /**
