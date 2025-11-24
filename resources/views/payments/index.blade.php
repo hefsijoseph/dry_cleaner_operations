@@ -35,20 +35,21 @@
                             <tr>
                                 <td>{{ $payment->order->order_name }}</td>
                                 <td>{{ $payment->cost}}</td>
-                                <td>{{ $payment->is_paid}}</td>
+                               <td>{{ $payment->is_paid ? 'Yes' : 'No' }}</td>
+
                                 <td>
                                     <form action="{{ route('payments.destroy', $payment->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                          @can('payment-edit',$authEmployee)
+                                        @can('payment-edit',$authEmployee)
                                         <a href="{{ route('payments.edit' , $payment->id )}}" class="btn btn-primary btn-sm">Edit</a>
                                         @endcan
-                                          @can('payment-list',$authEmployee)
+                                        @can('payment-list',$authEmployee)
                                         <a href="{{ route('payments.show' , $payment->id )}}" class="btn btn-info btn-sm">Show</a>
-                                       @endcan
-                                       @can('payment-delete',$authEmployee)
+                                        @endcan
+                                        @can('payment-delete',$authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>
-                               @endcan
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach
