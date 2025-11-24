@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <form method="GET" action="{{ route('employees.index') }}" class="d-flex gap-4 mb-5">
+                        <input type="text" name="search" value="{{ $search }}" placeholder="Search employees..." autocomplete="off" class="form-control" id="employee-search">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        <div id="results"></div>
+
+                    </form>
             <div class="card">
                 <div class="card-header">Employees</div>
 
@@ -20,14 +26,7 @@
                     </div>
                     @endsession
                     <a href="{{ route('employees.index') }}" class="btn btn-info mb-3">Back</a>
-                    <form method="GET" action="{{ route('employees.index') }}">
-                        <input type="text" name="search" value="{{ $search }}" placeholder="Search employees..." autocomplete="off" class="form-control" id="employee-search">
-
-
-
-                        <div id="results"></div>
-                        <button type="submit">Search</button>
-                    </form>
+                
 
                     <table class="table table-striped table-bordered">
                         {{-- {{ dd(Auth::guard('employee')->check(), Auth::guard('employee')->user());
@@ -88,31 +87,32 @@
 </div>
 
 <script>
-document.getElementById('employee-search').addEventListener('keyup', function() {
-    let search = this.value;
+    document.getElementById('employee-search').addEventListener('keyup', function() {
+        let search = this.value;
 
-    fetch("{{ route('employees.live-search') }}?search=" + search)
-        .then(response => response.json())
-        .then(data => {
-            let html = '';
+        fetch("{{ route('employees.live-search') }}?search=" + search)
+            .then(response => response.json())
+            .then(data => {
+                let html = '';
 
-            if (data.length === 0) {
-                html = '<p>No results found</p>';
-            } else {
-                data.forEach(emp => {
-                    html += `
+                if (data.length === 0) {
+                    html = '<p>No results found</p>';
+                } else {
+                    data.forEach(emp => {
+                        html += `
                         <div style="padding: 6px; border-bottom: 1px solid #eee;">
                             <strong>${emp.first_name} ${emp.last_name}</strong> <br>
                             Email: ${emp.email ?? '-'} <br>
                             Phone: ${emp.phone ?? '-'}
                         </div>
                     `;
-                });
-            }
+                    });
+                }
 
-            document.getElementById('results').innerHTML = html;
-        });
-});
+                document.getElementById('results').innerHTML = html;
+            });
+    });
+
 </script>
 
 @endsection

@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,15 +6,10 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
-
-
-
-
-
-
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -22,22 +17,22 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 
-
-
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-size: 1.3rem;
 }
-body,html {
-  font-family: "Lato", sans-serif;
-  height: 100%;
-  /* background: rgba(4, 7, 32, 0.9); */
+body,
+html {
+    font-family: "Lato", sans-serif;
+    height: 100%;
+    /* background: rgba(4, 7, 32, 0.9); */
 }
 
 /* .header{
@@ -47,120 +42,123 @@ body,html {
 } */
 
 .navbar {
-  background-color: rgb(4, 7, 32);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 90px;
-  padding: 0 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 5px 0px 2px rgba(0,0,0,0.2);
+    background-color: rgb(4, 7, 32);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 0px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Left section */
 .navbar .news {
-  color: #ccc;
-  font-size: 20px;
-  margin-right: 20px;
+    color: #ccc;
+    font-size: 20px;
+    margin-right: 20px;
 }
 
 /* Right section */
 .navbar-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 /* Links */
 .navbar a {
-  color: #ccc;
-  text-decoration: none;
+    color: #ccc;
+    text-decoration: none;
 }
 
 .navbar a:hover {
-  color: #fff;
+    color: #fff;
 }
 
 /* Avatar */
 .navbar img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute !important;
+    top: 100%;
+    right: 0;
 }
 
 /* Dropdown container */
 .nav-item.dropdown {
-  position: relative;
-  display: inline-block;   /* prevents shifting */
+    position: relative;
+    display: inline-block; /* prevents shifting */
 }
 
 /* Dropdown button */
 #navbarDropdown {
-  cursor: pointer;
-  white-space: nowrap;  /* keeps name in one line */
+    cursor: pointer;
+    white-space: nowrap; /* keeps name in one line */
 }
 
 /* Dropdown menu */
 .dropdown-menu {
-  position: absolute;
-  top: 100%;        /* directly under the name */
-  right: 0;
-  display: none;
-  min-width: 140px;
-  background: white;
-  padding: 5px 0;
-  border-radius: 5px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  z-index: 999;
+    position: absolute;
+    top: 100%; /* directly under the name */
+    right: 0;
+    display: none;
+    min-width: 140px;
+    background-color: rgb(4, 7, 32);
+    padding: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 999;
 }
 
 /* Show dropdown on hover */
 .nav-item.dropdown:hover .dropdown-menu {
-  display: block;
+    display: block;
 }
 
 .dropdown-menu a {
-  display: block;
-  padding: 8px 12px;
-  color: #333;
+    display: block;
+    padding: 8px 12px;
+    color: #333;
 }
 
 .dropdown-menu a:hover {
-  background: #f2f2f2;
-  color: red;
+    color: #818181;
 }
 
 /* Prevent avatar from being inside hover area */
 .navbar img {
-  margin-left: 25px;     /* small spacing only */
-  margin-right: 0;       /* remove large margin */
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+    margin-left: 15px; /* small spacing only */
+    margin-right: 60px; /* remove large margin */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
-
-
 
 .sidenav {
-  height: 100%;
-  width: 280px;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  background-color:rgb(4, 7, 32);
-  overflow-x: hidden;
-  padding-top: 20px;
-  box-shadow: 5px 0px 2px rgba(0,0,0,0.2);
+    height: 100%;
+    width: 280px;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background-color: rgb(4, 7, 32);
+    overflow-x: hidden;
+    padding-top: 20px;
+    box-shadow: 5px 0px 2px rgba(0, 0, 0, 0.2);
 }
-.sidenav h2{
+.sidenav h2 {
     padding: 6px 8px 30px 16px;
     color: #818181;
-    font-size:2.1rem;
+    font-size: 2.1rem;
 }
 /* .sidenav h2::before{
     content:'';
@@ -170,93 +168,93 @@ body,html {
     border-radius:30px;
 } */
 
-.sidenav a, .dropdown-btn {
+.sidenav a,
+.dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     color: #818181;
-   /* Enable Flexbox on the button */
-  display: flex;
-  
-  /* Vertically center all content (SVG, Text, Caret) */
-  align-items: center; 
-  
-  /* Space out the items evenly */
-  /* justify-content: space-between; */
+    /* Enable Flexbox on the button */
+    display: flex;
+
+    /* Vertically center all content (SVG, Text, Caret) */
+    align-items: center;
+
+    /* Space out the items evenly */
+    /* justify-content: space-between; */
     border: none;
     background: none;
     width: 100%;
     /* text-align: left; */
     cursor: pointer;
     outline: none;
-  }
-  svg{
-    padding-right:0px;
+}
+svg {
+    padding-right: 0px;
     /* padding-top:10px; */
 
     /* Add space to the right of the SVG to separate it from the text */
-  margin-right: 8px; 
-  
-  /* Ensure the SVG is aligned nicely with the text */
-  vertical-align: middle;
+    margin-right: 8px;
 
-  }
-  .dropdown-btn{
+    /* Ensure the SVG is aligned nicely with the text */
+    vertical-align: middle;
+}
+.dropdown-btn {
     margin-bottom: 15px;
-  }
-  .sidenav a:hover, .dropdown-btn:hover {
+}
+.sidenav a:hover,
+.dropdown-btn:hover {
     color: #f1f1f1;
-  }
+}
 
-  .open {
-    width:260px;
-    height:60px;
+.open {
+    width: 260px;
+    height: 60px;
     /* background: linear-gradient(
         to top,
         rgb(4, 7, 32),
         green
     ); */
-    background:green;
+    background: green;
     color: white;
-    border-radius:5px;
-    margin:15px 10px;
-  }
+    border-radius: 5px;
+    margin: 15px 10px;
+}
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
     display: none;
-    background-color:  rgb(4, 7, 32);
+    background-color: rgb(4, 7, 32);
     padding-left: 16px;
-  }
+}
 
-  .line{
-    margin-top:130px;
-    margin-bottom:10px;
-    margin-left:15px;
-    margin-right:15px;
+.line {
+    margin-top: 130px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
     padding: 6px 8px 6px 16px;
     border-top: 1px solid gray;
-  
-  }
-  /* 2. Flexbox container for vertical alignment */
-  .page-container {
+}
+/* 2. Flexbox container for vertical alignment */
+.page-container {
     display: flex;
     flex-direction: column; /* Stacks items vertically: main on top, footer below */
-    min-height: 100vh;      /* Ensures the container fills the viewport height */
-  }
-  
+    min-height: 100vh; /* Ensures the container fills the viewport height */
+}
+
 .main {
     margin-top: 70px;
-  margin-left: 280px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 40px 50px;
-  /* background: rgba(4, 7, 32, 0.3); */
-  /* border-radius: 8px;
+    margin-left: 280px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 40px 50px;
+    /* background: rgba(4, 7, 32, 0.3); */
+    /* border-radius: 8px;
   border: 1px solid gray;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px; */
-  background: #ff1f1;
-  flex-grow: 1;
+    background: #ff1f1;
+    flex-grow: 1;
 }
 
 /* .main div{
@@ -267,40 +265,29 @@ body,html {
 
 } */
 
-
-
 .footer {
-    background-color: rgb(4, 7, 32);;
-    /* position: fixed;
-    bottom: 0; */
+     background-color: rgb(4, 7, 32);
     width: 100%;
     height: 100px;
-    margin-left: 280px;
-    padding-left: 600px;
-    padding-top:30px;
-  }
 
-  .footer p{
-    color:#818181;
- 
-  }
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    display: flex;
+    justify-content: center;   /* horizontal center */
+    align-items: center;       /* vertical center */
 }
 
-
-
-
-
-
-
+.footer p {
+    color: #818181;
+}
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
 
 .pagination .page-link {
     padding: 0.375rem 0.75rem !important;
     line-height: 1.5 !important;
 }
-
-
-
-
