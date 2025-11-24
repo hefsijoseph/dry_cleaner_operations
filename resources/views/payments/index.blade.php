@@ -35,7 +35,13 @@
                             <tr>
                                 <td>{{ $payment->order->order_name }}</td>
                                 <td>{{ $payment->cost}}</td>
-                               <td>{{ $payment->is_paid ? 'Yes' : 'No' }}</td>
+                                <td>
+                                    {!! $payment->is_paid
+                                    ? '<span style="color:green">✔</span>'
+                                    : '<span style="color:red">✖</span>'
+                                    !!}
+                                </td>
+
 
                                 <td>
                                     <form action="{{ route('payments.destroy', $payment->id) }}" method="post">
