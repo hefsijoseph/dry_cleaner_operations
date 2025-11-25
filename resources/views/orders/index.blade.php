@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+         <form method="GET" action="{{ route('orders.index') }}" class="d-flex gap-4 mb-5">
+                <input type="text" name="search" value="{{ $search }}" placeholder="Search order..." autocomplete="off" class="form-control" id="employee-search">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <div id="results"></div>
+
+            </form>
             <div class="card">
                 <div class="card-header">Orders</div>
 
@@ -20,6 +26,8 @@
                         {{ $value }}
                     </div>
                     @endsession
+
+                    <a href="{{ route('orders.index') }}" class="btn btn-info mb-3">Back</a>
                     {{-- <a href="{{ route('customers.create') }}" class="btn btn-success mb-2">Create customer</a> --}}
                     <table class="table table-striped table-bordered">
                         <thead>

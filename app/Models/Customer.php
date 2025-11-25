@@ -35,4 +35,17 @@ class Customer extends Authenticatable // or extends User
         return $this->hasMany(Order::class);
     }
     
+public function scopeSearch($query, $search)
+{
+    if (!empty($search)) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'LIKE', "%{$search}%")
+              ->orWhere('email', 'LIKE', "%{$search}%")
+              ->orWhere('phone', 'LIKE', "%{$search}%");
+        });
+    }
+
+    return $query;
+}
+
 }

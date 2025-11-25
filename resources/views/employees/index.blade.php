@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <form method="GET" action="{{ route('employees.index') }}" class="d-flex gap-4 mb-5">
-                        <input type="text" name="search" value="{{ $search }}" placeholder="Search employees..." autocomplete="off" class="form-control" id="employee-search">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                        <div id="results"></div>
+                <input type="text" name="search" value="{{ $search }}" placeholder="Search employees..." autocomplete="off" class="form-control" id="employee-search">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <div id="results"></div>
 
-                    </form>
+            </form>
             <div class="card">
                 <div class="card-header">Employees</div>
 
@@ -26,7 +26,7 @@
                     </div>
                     @endsession
                     <a href="{{ route('employees.index') }}" class="btn btn-info mb-3">Back</a>
-                
+
 
                     <table class="table table-striped table-bordered">
                         {{-- {{ dd(Auth::guard('employee')->check(), Auth::guard('employee')->user());

@@ -13,11 +13,17 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::with('address')->orderBy('created_at','desc')->paginate(15);
-         $authEmployee = Auth::guard('employee')->user();
-        return view("customers.index", compact("customers","authEmployee"));
+        // $customers = Customer::with('address')->orderBy('created_at','desc')->paginate(15);
+        $search = $request->search;
+
+        $customers = Customer::with('address')       // load relation
+            ->search($search)                        // apply search scope
+            ->orderBy('created_at', 'desc')          // sort employees
+            ->paginate(10);                          // paginate results
+        $authEmployee = Auth::guard('employee')->user();
+        return view("customers.index", compact("customers", "authEmployee","search"));
     }
 
     /**
@@ -34,25 +40,25 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-          // 1. Validation (Looks correct, but ensure 'addresses' table ID column is 'id')
-    $validatedData = $request->validate([
-        'name'  => 'required|string|max:255',
-        'email'       => 'required|email|unique:customers,email', // Added unique rule
-        'phone'       => 'required|string|max:10', // Consider using regex for proper phone format
-        'password'    => 'required|min:8', // Added minimum length for security
-        // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
-        'address_id'  => 'required|integer|exists:addresses,id',
-    ]);
+        // 1. Validation (Looks correct, but ensure 'addresses' table ID column is 'id')
+        $validatedData = $request->validate([
+            'name'  => 'required|string|max:255',
+            'email'       => 'required|email|unique:customers,email', // Added unique rule
+            'phone'       => 'required|string|max:10', // Consider using regex for proper phone format
+            'password'    => 'required|min:8', // Added minimum length for security
+            // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
+            'address_id'  => 'required|integer|exists:addresses,id',
+        ]);
 
-    // 2. Hash the Password (CRITICAL SECURITY STEP)
-    $validatedData['password'] = Hash::make($validatedData['password']);
+        // 2. Hash the Password (CRITICAL SECURITY STEP)
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
-    // 3. Create the Employee
-    // This will only work if the fields are in the $fillable array in the Employee model.
-    Customer::create($validatedData);
+        // 3. Create the Employee
+        // This will only work if the fields are in the $fillable array in the Employee model.
+        Customer::create($validatedData);
 
-    // 4. Redirect with a success message
-    return redirect()->route('customers.index')->with('success', 'Customer created successfully!');
+        // 4. Redirect with a success message
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully!');
     }
 
     /**
@@ -70,8 +76,8 @@ class CustomerController extends Controller
     public function edit(string $id)
     {
         $customer = Customer::findOrFail($id);
-         $addresses = Address::all();
-        return view("customers.edit", compact("customer","addresses"));
+        $addresses = Address::all();
+        return view("customers.edit", compact("customer", "addresses"));
     }
 
     /**
@@ -79,35 +85,35 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         // 1️⃣ Find the customer or fail
-    $customer = Customer::findOrFail($id);
-               // 1. Validation (Looks correct, but ensure 'addresses' table ID column is 'id')
-    $validatedData = $request->validate([
-        'name'  => 'required|string|max:255',
-        'email' => 'required|email|unique:employees,email,' . $id,// Added unique rule
-        'phone'       => 'required|string|max:10', // Consider using regex for proper phone format
-        'password'    => 'nullable|min:8', // Added minimum length for security
-        // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
-        'address_id'  => 'required|integer|exists:addresses,id',
-    ]);
+        // 1️⃣ Find the customer or fail
+        $customer = Customer::findOrFail($id);
+        // 1. Validation (Looks correct, but ensure 'addresses' table ID column is 'id')
+        $validatedData = $request->validate([
+            'name'  => 'required|string|max:255',
+            'email' => 'required|email|unique:employees,email,' . $id, // Added unique rule
+            'phone'       => 'required|string|max:10', // Consider using regex for proper phone format
+            'password'    => 'nullable|min:8', // Added minimum length for security
+            // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
+            'address_id'  => 'required|integer|exists:addresses,id',
+        ]);
 
-    // 2. Hash the Password (CRITICAL SECURITY STEP)
-    $validatedData['password'] = Hash::make($validatedData['password']);
-
-     // 3️⃣ Update password only if provided
-    if (!empty($validatedData['password'])) {
+        // 2. Hash the Password (CRITICAL SECURITY STEP)
         $validatedData['password'] = Hash::make($validatedData['password']);
-    } else {
-        unset($validatedData['password']); // Don’t overwrite existing password
-    }
 
-     // 4️⃣ Update the employee
-    $customer->update($validatedData);
+        // 3️⃣ Update password only if provided
+        if (!empty($validatedData['password'])) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        } else {
+            unset($validatedData['password']); // Don’t overwrite existing password
+        }
 
-    // 5️⃣ Redirect with success message
-    return redirect()
-        ->route('customers.index')
-        ->with('success', 'Customer updated successfully!');
+        // 4️⃣ Update the employee
+        $customer->update($validatedData);
+
+        // 5️⃣ Redirect with success message
+        return redirect()
+            ->route('customers.index')
+            ->with('success', 'Customer updated successfully!');
     }
 
     /**
@@ -117,7 +123,6 @@ class CustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
         $customer->delete();
-        return redirect()->route("customers.index")->
-        with("success", "Customer deleted.");
+        return redirect()->route("customers.index")->with("success", "Customer deleted.");
     }
 }

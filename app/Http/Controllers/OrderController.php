@@ -14,12 +14,18 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // $orders = Order::all();
-        $orders = Order::with('item','customer','employee')->orderBy('created_at','desc')->paginate(15);
-         $authEmployee = Auth::guard('employee')->user();
-        return view("orders.index", compact("orders","authEmployee"));
+        // $orders = Order::with('item','customer','employee')->orderBy('created_at','desc')->paginate(15);
+            $search = $request->search;
+
+        $orders =  Order::with('item','customer','employee')       // load relation
+            ->search($search)                        // apply search scope
+            ->orderBy('created_at', 'desc')          // sort employees
+            ->paginate(10);                          // paginate results
+        $authEmployee = Auth::guard('employee')->user();
+        return view("orders.index", compact("orders","authEmployee","search"));
     }
 
     /**

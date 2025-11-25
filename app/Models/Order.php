@@ -36,4 +36,16 @@ class Order extends Model
       public function payments(){
         return $this->hasMany(Payment::class);
     }
+
+    public function scopeSearch($query, $search)
+{
+    if (!empty($search)) {
+        $query->where(function ($q) use ($search) {
+            $q->where('order_name', 'LIKE', "%{$search}%")
+              ->orWhere('item_weight_kg', 'LIKE', "%{$search}%");
+        });
+    }
+
+    return $query;
+}
 }
