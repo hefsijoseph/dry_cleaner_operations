@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <form method="GET" action="{{ route('employees.index') }}" class="d-flex gap-4 mb-5">
-                <input type="text" name="search" value="{{ $search }}" placeholder="Search employees..." autocomplete="off" class="form-control" id="employee-search">
+                <input type="text" name="search" value="{{ $search }}" placeholder="Search employee..." autocomplete="off" class="form-control" id="employee-search">
                 <button type="submit" class="btn btn-primary">Search</button>
                 <div id="results"></div>
 

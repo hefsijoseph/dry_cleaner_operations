@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeePasswordResetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -98,3 +99,19 @@ Route::get('get-customer-for-order/{order}', [PaymentController::class, 'getCust
 
 Route::get('/employees/live-search', [EmployeeController::class, 'liveSearch'])
     ->name('employees.live-search');
+
+
+
+  
+
+Route::get('employee/forgot-password', [EmployeePasswordResetController::class, 'requestForm'])
+    ->name('employee.password.request');
+
+Route::post('employee/forgot-password', [EmployeePasswordResetController::class, 'sendEmail'])
+    ->name('employee.password.email');
+
+Route::get('employee/reset-password/{token}', [EmployeePasswordResetController::class, 'resetForm'])
+    ->name('employee.password.reset');
+
+Route::post('employee/reset-password', [EmployeePasswordResetController::class, 'updatePassword'])
+    ->name('employee.password.update');
