@@ -22,6 +22,20 @@
         "Noto Color Emoji";
 }
 
+@font-face {
+    font-family: "Arvo";
+    src: url("/fonts/Arvo-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Arvo";
+    src: url("/fonts/Arvo-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +44,7 @@
 }
 body,
 html {
-    font-family: "Lato", sans-serif;
+    font-family: "Arvo", sans-serif   !important;
     height: 100%;
     /* background: rgba(4, 7, 32, 0.9); */
 }
@@ -266,13 +280,13 @@ svg {
 } */
 
 .footer {
-     background-color: rgb(4, 7, 32);
+    background-color: rgb(4, 7, 32);
     width: 100%;
     height: 100px;
 
     display: flex;
-    justify-content: center;   /* horizontal center */
-    align-items: center;       /* vertical center */
+    justify-content: center; /* horizontal center */
+    align-items: center; /* vertical center */
 }
 
 .footer p {

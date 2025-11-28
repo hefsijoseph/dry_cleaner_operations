@@ -1,10 +1,25 @@
+@font-face {
+    font-family: "Arvo";
+    src: url("/fonts/Arvo-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Arvo";
+    src: url("/fonts/Arvo-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+
 /* Background image */
 body {
     margin: 0;
     padding: 0;
     /* background: url('/images/dry_cleaning.jpg') no-repeat center center/cover; */
     height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: "Arvo", sans-serif   !important;;
     position: relative;
 
     background:

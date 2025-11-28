@@ -23,7 +23,7 @@
             <h2>Employee Login</h2>
 
             <input type="email" name="email" placeholder="Email" required>
-            <p>Email must a valid address, e.g.me@mydomain.com </p>
+            <p>Email must a valid address, e.g.me@gmail.com </p>
             <input type="password" name="password" placeholder="Password" required>
             <p>Password must alphanumeric (@ and - are also allowed) be 8 - 20 characters</p>
 
