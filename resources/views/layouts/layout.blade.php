@@ -53,11 +53,54 @@
             margin: 0;
         }
 
+
+        /* Fullscreen preloader container */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease;
+}
+
+/* Simple spinning loader */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #eee;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#preloader p {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #555;
+}
+
+
     </style>
 </head>
 
 <body>
-    <header class="header">
+   <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader"></div>
+        <p>Loading... Please wait</p>
+    </div>
+
+ <!-- MAIN CONTENT-->
+ <div id="main-content" style="display: none;">
+   <header class="header">
         <nav class="navbar">
             <div>
                 <a href="#news" class="news">News</a>
@@ -97,7 +140,7 @@
             </ul>
             <img src="images/avatar.png" alt="avatar" style="" />
 
-      
+
             <div>
             </div>
 
@@ -303,6 +346,23 @@
             <p>Copright 2025 Designed and Created by Hefsi</p>
         </footer>
     </div>
+
+ </div>
+
+ <script>
+    window.addEventListener("load", function () {
+        const preloader = document.getElementById("preloader");
+        const content = document.getElementById("main-content");
+
+        preloader.style.opacity = "0";
+
+        setTimeout(() => {
+            preloader.style.display = "none";
+            content.style.display = "block";
+        }, 500);
+    });
+</script>
+
 
 </body>
 

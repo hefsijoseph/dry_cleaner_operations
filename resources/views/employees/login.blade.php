@@ -1,15 +1,17 @@
-{{-- @extends('layouts.layout')
-
-@section('content') --}}
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Dry Cleaner Operations Management System - Login</title>
+    <link rel="preload" href="{{ asset('images/dry_cleaning.jpg') }}" as="image">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-      @vite('resources/js/validation.js')
+    @vite('resources/js/validation.js')
 </head>
 <body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
 
     <div class="overlay"></div>
 
@@ -38,11 +40,25 @@
         </form>
     </div>
 
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Preload background image used in your CSS
+    const bgImage = new Image();
+    bgImage.src = "{{ asset('images/dry_cleaning.jpg') }}";  // <-- EXACT path from your CSS
+
+    bgImage.onload = function () {
+        const preloader = document.getElementById("preloader");
+
+        // Fade-out animation
+        preloader.style.opacity = "0";
+
+        setTimeout(() => {
+            preloader.style.display = "none";
+        }, 2000);
+    };
+
+});
+</script>
 </body>
 </html>
-
-
-
-
-
-{{-- @endsection --}}

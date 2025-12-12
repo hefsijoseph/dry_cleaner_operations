@@ -12,7 +12,7 @@
                     <a href="{{ route('roles.index')}}" class="btn btn-info">Back</a>
                      <p><strong>Id: </strong>{{ $role->id }}</p>
                      <p><strong>Name: </strong>{{ $role->name }}</p>
-                     <h4>Permissions: </h4>
+                     <h4><strong>Permissions:</strong></h4>
                      @foreach($role->permissions as $key => $permission)
                         <p>{{ $permission->name }}</p>
                      @endforeach
