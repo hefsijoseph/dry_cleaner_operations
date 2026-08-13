@@ -343,7 +343,7 @@
         </main>
 
         <footer class="footer">
-            <p>Copright 2025 Designed and Created by Hefsi</p>
+            <p>Copyright 2025 Designed and Created by Hefsi</p>
         </footer>
     </div>
 

@@ -42,7 +42,7 @@
 
                 <div>
                     <label>Customer Name:</label>
-                    <input type="text" class="form-control" id="customer_name_display" value="Please select an order" readonly>
+                    <input type="text" class="form-control" id="customer_name_display" value="Customer name" readonly>
                 </div>
                 <div class="mt-2">
                     <label for="cost">Cost/Price:</label>

@@ -100,7 +100,7 @@
                             <select name="roles[]" id="role_id" class="form-control" **required** multiple>
                                 {{-- Set the value to NULL (or keep it empty) and remove 'selected' --}}
                                 {{-- The 'disabled' attribute prevents it from being selected via script --}}
-                                <option value="" disabled>-- Select address --</option>
+                                <option value="" disabled>-- Select role --</option>
 
                                 @foreach($roles as $key => $role)
                                 {{-- Make sure you're using the correct ID column here (most likely $address->id) --}}
