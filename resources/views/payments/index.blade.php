@@ -54,7 +54,7 @@
                                         <a href="{{ route('payments.show' , $payment->id )}}" class="btn btn-info btn-sm">View</a>
                                         @endcan
                                         @can('payment-delete',$authEmployee)
-                                        <button class="btn btn-danger btn-sm">delete</button></form>
+                                        <button class="btn btn-danger btn-sm">Delete</button></form>
                                     @endcan
                                 </td>
                             </tr>
