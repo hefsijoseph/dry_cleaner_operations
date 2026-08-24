@@ -62,7 +62,7 @@
                                     @endcan
 
                                     @can('employee-list', $authEmployee)
-                                    <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm">Show</a>
+                                    <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm">View</a>
                                     @endcan
 
                                     @can('employee-delete', $authEmployee)

@@ -42,7 +42,7 @@
                                         <a href="{{ route('roles.edit' , $role->id )}}" class="btn btn-primary btn-sm">Edit</a>
                                         @endcan
                                         @can('role-list',$authEmployee)
-                                        <a href="{{ route('roles.show' , $role->id )}}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('roles.show' , $role->id )}}" class="btn btn-info btn-sm">View</a>
                                         @endcan
                                         @can('role-delete',$authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>

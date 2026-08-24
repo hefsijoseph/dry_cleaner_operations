@@ -44,7 +44,7 @@
                                         <a href="{{ route('addresses.edit' , $address->id )}}" class="btn btn-primary btn-sm">Edit</a>
                                         @endcan
                                         @can('address-list',$authEmployee)
-                                        <a href="{{ route('addresses.show' , $address->id )}}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('addresses.show' , $address->id )}}" class="btn btn-info btn-sm">View</a>
                                         @endcan
                                         @can('address-delete',$authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>

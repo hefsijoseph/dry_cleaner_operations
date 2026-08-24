@@ -42,7 +42,7 @@
                                         <a href="{{ route('items.edit' , $item->id )}}" class="btn btn-primary btn-sm">Edit</a>
                                         @endcan
                                         @can('item-list', $authEmployee)
-                                        <a href="{{ route('items.show' , $item->id )}}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('items.show' , $item->id )}}" class="btn btn-info btn-sm">View</a>
                                         @endcan
                                         @can('item-delete', $authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>

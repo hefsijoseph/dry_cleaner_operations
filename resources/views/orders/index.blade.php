@@ -54,7 +54,7 @@
                                         <a href="{{ route('orders.edit' , $order->id )}}" class="btn btn-primary btn-sm">Edit</a>
                                         @endcan
                                          @can('order-list',$authEmployee)
-                                        <a href="{{ route('orders.show' , $order->id )}}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('orders.show' , $order->id )}}" class="btn btn-info btn-sm">View</a>
                                         @endcan
                                          @can('order-delete',$authEmployee)
                                         <button class="btn btn-danger btn-sm">delete</button></form>
