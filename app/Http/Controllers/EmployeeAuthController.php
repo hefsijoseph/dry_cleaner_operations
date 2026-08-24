@@ -21,9 +21,11 @@ class EmployeeAuthController extends Controller
             return redirect()->route('employees.index');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        return back()->withErrors(['email' => 'Incorrect username / password.']);
     }
 
+    
+    
     public function logout()
     {
         Auth::guard('employee')->logout();

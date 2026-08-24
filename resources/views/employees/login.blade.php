@@ -24,11 +24,16 @@
             @csrf
             <h2>Employee Login</h2>
 
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email"  value="{{ old('email') }}" required>
             <p>Email must a valid address, e.g.me@gmail.com </p>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password"  required>
             <p>Password must alphanumeric (@ and - are also allowed) be 8 - 20 characters</p>
-
+       <!-- Display authentication or validation error message -->
+        @if ($errors->any())
+            <div class="error-message" style="color: red; margin-bottom: 10px; font-weight: bold;">
+                {{ $errors->first() }}
+            </div>
+        @endif
             <div class="options">
                 <label class="remember-me">
                     <input type="checkbox" name="remember"> Remember Me
