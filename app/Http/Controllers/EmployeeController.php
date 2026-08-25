@@ -89,7 +89,7 @@ class EmployeeController extends Controller
         $employee->syncRoles($request->roles);
 
         // 4. Redirect with a success message
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully!');
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
     /**
@@ -146,7 +146,7 @@ class EmployeeController extends Controller
         // 5️⃣ Redirect with success message
         return redirect()
             ->route('employees.index')
-            ->with('success', 'Employee updated successfully!');
+            ->with('success', 'Employee updated successfully.');
     }
 
 
@@ -158,7 +158,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         $employee->delete();
-        return redirect()->route("employees.index")->with("success", "Employee deleted.");
+        return redirect()->route("employees.index")->with("deleted", "Employee deleted successfully.");
     }
 
 

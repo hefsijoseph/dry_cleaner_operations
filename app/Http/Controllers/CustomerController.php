@@ -66,7 +66,7 @@ class CustomerController extends Controller
         Customer::create($validatedData);
 
         // 4. Redirect with a success message
-        return redirect()->route('customers.index')->with('success', 'Customer created successfully!');
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
     /**
@@ -121,7 +121,7 @@ class CustomerController extends Controller
         // 5️⃣ Redirect with success message
         return redirect()
             ->route('customers.index')
-            ->with('success', 'Customer updated successfully!');
+            ->with('success', 'Customer updated successfully.');
     }
 
     /**
@@ -131,6 +131,6 @@ class CustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
         $customer->delete();
-        return redirect()->route("customers.index")->with("success", "Customer deleted.");
+        return redirect()->route("customers.index")->with("deleted", "Customer deleted successfully.");
     }
 }

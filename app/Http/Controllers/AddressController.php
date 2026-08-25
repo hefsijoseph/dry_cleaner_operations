@@ -44,7 +44,7 @@ class AddressController extends Controller
 
         Address::create($validated);
 
-        return  redirect()->route('addresses.index')->with('added','Address added!');
+        return  redirect()->route('addresses.index')->with('success','Address created successfully.');
     }
 
     /**
@@ -79,7 +79,7 @@ class AddressController extends Controller
 
         $address->save();
           return redirect()->route("addresses.index")->
-        with("success", "address updated");
+        with("success", "Address updated successfully.");
     }
 
     /**
@@ -90,6 +90,6 @@ class AddressController extends Controller
         $address = Address::findOrFail($id);
         $address->delete();
         return redirect()->route("addresses.index")->
-        with("success", "address deleted.");
+        with("deleted", "Address deleted successfully.");
     }
 }

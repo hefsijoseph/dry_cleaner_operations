@@ -64,7 +64,7 @@ class OrderController extends Controller
     Order::create($validatedData);
 
     // 4. Redirect with a success message
-    return redirect()->route('orders.index')->with('success', 'Order created successfully!');
+    return redirect()->route('orders.index')->with('success', 'Order created successfully.');
     }
 
     /**
@@ -108,7 +108,7 @@ class OrderController extends Controller
     // 5️⃣ Redirect with success message
     return redirect()
         ->route('orders.index')
-        ->with('success', 'Order updated successfully!');
+        ->with('success', 'Order updated successfully.');
     }
 
     /**
@@ -119,6 +119,6 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order->delete();
         return redirect()->route("orders.index")->
-        with("success", "Order deleted.");
+        with("deleted", "Order deleted successfully.");
     }
 }

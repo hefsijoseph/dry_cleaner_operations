@@ -13,16 +13,20 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    @session('success')
-                    <div class="alert alert-success">
-                        {{ $value }}
+                    <!-- Green Alert (Success / Create / Edit) -->
+                    @if (session('success'))
+                    <div style="background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 500;">
+                        {{ session('success') }}
                     </div>
-                    @endsession
-                    @session('added')
-                    <div class="alert alert-success">
-                        {{ $value }}
+                    @endif
+
+                    <!-- Red Alert (Deletion) -->
+                    @if (session('deleted'))
+                    <div style="background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 500;">
+                        {{ session('deleted') }}
                     </div>
-                    @endsession
+                    @endif
+
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -35,7 +39,7 @@
                             <tr>
                                 <td>{{ $address->address }}</td>
                                 <td>
-                                    <form action="{{ route('addresses.destroy', $address->id) }}" method="post">
+                                    <form action="{{ route('addresses.destroy', $address->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this address?');">
                                         @csrf
                                         @method('delete')
 

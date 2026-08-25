@@ -57,7 +57,7 @@ class PaymentController extends Controller
         $payment = Payment::create($validatedData);
 
         // 3. Redirect the user to the payment index or show page
-        return redirect()->route('payments.index')->with('success', 'Payment recorded successfully!');
+        return redirect()->route('payments.index')->with('success', 'Payment recorded successfully.');
 
         // OR: If you have a show page:
         // return redirect()->route('payments.show', $payment->id)
@@ -126,7 +126,7 @@ class PaymentController extends Controller
 
         // 4. Redirect
         return redirect()->route('payments.index')
-                         ->with('success', 'Payment updated successfully!');
+                         ->with('success', 'Payment updated successfully.');
     }
 
     /**
@@ -141,7 +141,7 @@ class PaymentController extends Controller
 
         // Redirect back to the index page with a success message.
         return redirect()->route('payments.index')
-                         ->with('success', 'Payment successfully deleted!');
+                         ->with('deleted', 'Payment deleted successfully.');
     }
 
 
