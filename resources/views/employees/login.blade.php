@@ -24,16 +24,16 @@
             @csrf
             <h2>Employee Login</h2>
 
-            <input type="email" name="email" placeholder="Email"  value="{{ old('email') }}" required>
+            <input type="email" name="email" id="email-input" placeholder="Email" value="{{ old('email') }}" required>
             <p>Email must a valid address, e.g.me@gmail.com </p>
-            <input type="password" name="password" placeholder="Password"  required>
+            <input type="password" name="password" placeholder="Password" required>
             <p>Password must alphanumeric (@ and - are also allowed) be 8 - 20 characters</p>
-       <!-- Display authentication or validation error message -->
-        @if ($errors->any())
-            <div class="error-message" style="color: red; margin-bottom: 10px; font-weight: bold;">
+            <!-- Display authentication or validation error message -->
+            @if ($errors->any())
+            <div id="form-error-message" class="error-message" style="color: red; margin-bottom: 10px; font-weight: bold;">
                 {{ $errors->first() }}
             </div>
-        @endif
+            @endif
             <div class="options">
                 <label class="remember-me">
                     <input type="checkbox" name="remember"> Remember Me
@@ -46,24 +46,41 @@
     </div>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
 
-    // Preload background image used in your CSS
-    const bgImage = new Image();
-    bgImage.src = "{{ asset('images/dry_cleaning.jpg') }}";  // <-- EXACT path from your CSS
+            // Preload background image used in your CSS
+            const bgImage = new Image();
+            bgImage.src = "{{ asset('images/dry_cleaning.jpg') }}"; // <-- EXACT path from your CSS
 
-    bgImage.onload = function () {
-        const preloader = document.getElementById("preloader");
+            bgImage.onload = function() {
+                const preloader = document.getElementById("preloader");
 
-        // Fade-out animation
-        preloader.style.opacity = "0";
+                // Fade-out animation
+                preloader.style.opacity = "0";
 
-        setTimeout(() => {
-            preloader.style.display = "none";
-        }, 2000);
-    };
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 2000);
+            };
 
-});
-</script>
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorMessage = document.getElementById('form-error-message');
+
+            if (errorMessage) {
+                // Find all input fields inside the form
+                const inputs = document.querySelectorAll('form input');  //Listens for typing on both the email and password fields, so if the user corrects either input, the error box clears instantly
+
+                inputs.forEach(function(input) {
+                    // Hide the error box as soon as the user types in any input field
+                    input.addEventListener('input', function() {
+                        errorMessage.style.display = 'none';
+                    });
+                });
+            }
+        });
+
+    </script>
 </body>
 </html>

@@ -21,7 +21,8 @@ class EmployeeAuthController extends Controller
             return redirect()->route('employees.index');
         }
 
-        return back()->withErrors(['email' => 'Incorrect username / password.']);
+        return back()->withErrors(['email' => 'Incorrect username / password.'])
+        ->withInput($request->only('email')); // <-- Keep the email value in session;
     }
 
     
