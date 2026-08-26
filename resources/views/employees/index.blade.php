@@ -20,7 +20,7 @@
                     </div>
                     @endif
 
-                       <!-- Green Alert (Success / Create / Edit) -->
+                    <!-- Green Alert (Success / Create / Edit) -->
                     @if (session('success'))
                     <div style="background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-weight: 500;">
                         {{ session('success') }}
@@ -64,22 +64,33 @@
 
                                     {{-- Logged in employee: {{ $authEmployee->name ?? 'null' }}<br> --}}
                                     {{-- Has edit permission? {{ $authEmployee->can('employee-edit') ? 'yes' : 'no' }}@php $authEmployee = Auth::guard('employee')->user(); @endphp --}}
-
-                                    @can('employee-edit',$authEmployee)
-                                    <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    @endcan
-
-                                    @can('employee-list', $authEmployee)
-                                    <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm">View</a>
-                                    @endcan
-
-                                    @can('employee-delete', $authEmployee)
-                                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" class="delete-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        @can('employee-edit',$authEmployee)
+                                        <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        @endcan
+
+                                        @can('employee-list', $authEmployee)
+                                        <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm">View</a>
+                                        @endcan
+
+                                        @can('employee-delete', $authEmployee)
+
+                                        <button  type="button" class="btn btn-danger btn-sm open-modal-btn">Delete</button>
+                                        @endcan
+
+                                           <!-- Custom Modal per row -->
+                                        <dialog class="delete-modal">
+                                            <h3 style="margin-top: 0;">Confirm Deletion</h3>
+                                            <p>Are you sure you want to delete employee <strong>{{ $employee->first_name }}</strong> ? This action cannot be undone.</p>
+                                            <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                                                <button type="button" class="cancel-btn btn btn-secondary btn-sm">Cancel</button>
+                                                <button type="button" class="confirm-btn btn btn-danger btn-sm">Delete</button>
+                                            </div>
+                                        </dialog>
                                     </form>
-                                    @endcan
+                                    
 
                                 </td>
                             </tr>

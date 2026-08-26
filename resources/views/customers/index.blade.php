@@ -56,7 +56,7 @@
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->address->address }}</td>
                                 <td>
-                                    <form action="{{ route('customers.destroy', $customer->id) }}" method="post">
+                                    <form action="{{ route('customers.destroy', $customer->id) }}" method="post"  class="delete-form">
                                         @csrf
                                         @method('delete')
                                         @can('customer-edit',$authEmployee)
@@ -66,8 +66,18 @@
                                         <a href="{{ route('customers.show' , $customer->id )}}" class="btn btn-info btn-sm">View</a>
                                         @endcan
                                         @can('customer-delete',$authEmployee)
-                                        <button class="btn btn-danger btn-sm">Delete</button></form>
+                                        <button  type="button" class="btn btn-danger btn-sm open-modal-btn">Delete</button>
                                     @endcan
+                                        <!-- Custom Modal per row -->
+                                        <dialog class="delete-modal">
+                                            <h3 style="margin-top: 0;">Confirm Deletion</h3>
+                                            <p>Are you sure you want to delete customer <strong>{{ $customer->name }}</strong> ? This action cannot be undone.</p>
+                                            <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                                                <button type="button" class="cancel-btn btn btn-secondary btn-sm">Cancel</button>
+                                                <button type="button" class="confirm-btn btn btn-danger btn-sm">Delete</button>
+                                            </div>
+                                        </dialog>
+                                        </form>
                                 </td>
                             </tr>
                             @endforeach

@@ -88,6 +88,27 @@
 }
 
 
+
+/* Ensure the dialog is centered in the viewport */
+dialog.delete-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a dark semi-transparent backdrop behind the modal */
+dialog.delete-modal::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
     </style>
 </head>
 
@@ -360,6 +381,33 @@
             preloader.style.display = "none";
             content.style.display = "block";
         }, 500);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find all delete forms across the rows
+        document.querySelectorAll('.delete-form').forEach(function(form) {
+            const openModalBtn = form.querySelector('.open-modal-btn');
+            const deleteModal = form.querySelector('.delete-modal');
+            const cancelBtn = form.querySelector('.cancel-btn');
+            const confirmBtn = form.querySelector('.confirm-btn');
+
+            if (openModalBtn && deleteModal) {
+                // Open modal scoped to this row
+                openModalBtn.addEventListener('click', function() {
+                    deleteModal.showModal();
+                });
+
+                // Close modal on cancel
+                cancelBtn.addEventListener('click', function() {
+                    deleteModal.close();
+                });
+
+                // Submit form on confirm
+                confirmBtn.addEventListener('click', function() {
+                    form.submit();
+                });
+            }
+        });
     });
 </script>
 
