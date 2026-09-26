@@ -18,6 +18,11 @@
                       <p><strong>Phone: </strong>{{ $employee->phone }}</p>
                        <p><strong>Address: </strong>{{ $employee->address->address }}</p>
                        <p><strong>Employee id: </strong>{{ $employee->employee_id }}</p>
+                        <p><strong>Role: </strong> @foreach($employee->getRoleNames() as $key => $role)
+                                    <button class="btn btn-success btn-sm">
+                                        {{ $role }}
+                                    </button>
+                                    @endforeach</p>
                 </div>
             </div>
         </div>
