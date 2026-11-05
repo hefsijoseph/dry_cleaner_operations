@@ -159,7 +159,7 @@ dialog.delete-modal::backdrop {
                 </li>
                 @endguest
             </ul>
-            <img src="images/avatar.png" alt="avatar" style="" />
+         <img src="{{ asset('images/avatar.png') }}" alt="avatar" />
 
 
             <div>
