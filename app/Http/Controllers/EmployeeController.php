@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
-      $this->middleware(['permission:employee-list|employee-create|employee-edit|employee-delete'],["only" => ["index","show" ]]);
-      $this->middleware(['permission:employee-create'],["only" => ["create","store" ]]);
-      $this->middleware(['permission:employee-edit'],["only" => ["edit","update" ]]);
-      $this->middleware(['permission:employee-delete'],["only" => ["destroy" ]]);
+        $this->middleware(['permission:employee-list|employee-create|employee-edit|employee-delete'], ["only" => ["index", "show"]]);
+        $this->middleware(['permission:employee-create'], ["only" => ["create", "store"]]);
+        $this->middleware(['permission:employee-edit'], ["only" => ["edit", "update"]]);
+        $this->middleware(['permission:employee-delete'], ["only" => ["destroy"]]);
     }
     /**
      * Display a listing of the resource.
@@ -46,7 +47,7 @@ class EmployeeController extends Controller
             ->orderBy('created_at', 'desc')          // sort employees
             ->paginate(10);                          // paginate results
         $authEmployee = Auth::guard('employee')->user();
-        return view("employees.index", compact("employees", "authEmployee","search"));
+        return view("employees.index", compact("employees", "authEmployee", "search"));
     }
 
     /**
@@ -64,34 +65,39 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        //   dd($request->all());
-        // 1. Validation (Looks correct, but ensure 'addresses' table ID column is 'id')
+        // 1. Validate input
         $validatedData = $request->validate([
             'first_name'  => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255', // Changed to 'nullable' since it's not 'required'
+            'middle_name' => 'nullable|string|max:255',
             'last_name'   => 'required|string|max:255',
-            'email'       => 'required|email|unique:employees,email', // Added unique rule
-            'phone'       => 'required|string|max:10', // Consider using regex for proper phone format
-            'password'    => 'required|min:8', // Added minimum length for security
-            'employee_id' => 'required|string|max:30', // Added unique rule
-            // IMPORTANT: Ensure your addresses table's primary key is 'id'. If it's 'address_id', change the rule to 'exists:addresses,address_id'
+            'email'       => 'required|email|unique:employees,email',
+            'phone'       => 'required|string|max:10',
+            'password'    => 'required|min:8',
+            'employee_id' => 'required|string|max:30|unique:employees,employee_id',
             'address_id'  => 'required|integer|exists:addresses,id',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // 2. Hash the Password (CRITICAL SECURITY STEP)
+        // 2. Hash password
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        // 3. Create the Employee
-        // This will only work if the fields are in the $fillable array in the Employee model.
-        $employee =  Employee::create($validatedData);
+        // 3. Upload employee image
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')
+                ->store('employees', 'public');
+        }
+
+        // 4. Create employee
+        $employee = Employee::create($validatedData);
+
+        // 5. Assign roles
         $employee->syncRoles($request->roles);
 
-        // 4. Redirect with a success message
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
+        // 6. Redirect
+        return redirect()
+            ->route('employees.index')
+            ->with('success', 'Employee created successfully.');
     }
-
     /**
      * Display the specified resource.
      */
@@ -118,37 +124,51 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // 1️⃣ Find the employee or fail
         $employee = Employee::findOrFail($id);
 
-        // 2️⃣ Validate input
+        // 1. Validate
         $validatedData = $request->validate([
             'first_name'  => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name'   => 'required|string|max:255',
-            'email'       => 'required|email|unique:employees,email,' . $id, // ✅ Ignore current employee's email
+            'email'       => 'required|email|unique:employees,email,' . $id,
             'phone'       => 'required|string|max:10',
-            'password'    => 'nullable|min:8', // ✅ Make nullable (don’t force user to re-enter password)
-            'employee_id' => 'required|string|max:30', // ✅ Unique except current record
-            'address_id'  => 'required|integer|exists:addresses,id', // ✅ Matches your DB column name
+            'password'    => 'nullable|min:8',
+            'employee_id' => 'required|string|max:30|unique:employees,employee_id,' . $id,
+            'address_id'  => 'required|integer|exists:addresses,id',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // 3️⃣ Update password only if provided
+        // 2. Hash password if provided
         if (!empty($validatedData['password'])) {
             $validatedData['password'] = Hash::make($validatedData['password']);
         } else {
-            unset($validatedData['password']); // Don’t overwrite existing password
+            unset($validatedData['password']);
         }
 
-        // 4️⃣ Update the employee
+        // 3. Handle image upload
+        if ($request->hasFile('image')) {
+
+            // Delete old image
+            if ($employee->image) {
+                Storage::disk('public')->delete($employee->image);
+            }
+
+            // Store new image
+            $validatedData['image'] = $request->file('image')
+                ->store('employees', 'public');
+        }
+
+        // 4. Update employee
         $employee->update($validatedData);
+
+        // 5. Update roles
         $employee->syncRoles($request->roles);
-        // 5️⃣ Redirect with success message
+
         return redirect()
             ->route('employees.index')
             ->with('success', 'Employee updated successfully.');
     }
-
 
 
     /**
@@ -163,16 +183,15 @@ class EmployeeController extends Controller
 
 
     public function liveSearch(Request $request)
-{
-    $search = $request->search;
+    {
+        $search = $request->search;
 
-    $employees = Employee::with('address')
-        ->search($search)
-        ->orderBy('created_at', 'desc')
-        ->take(20) // return limited results for speed
-        ->get();
+        $employees = Employee::with('address')
+            ->search($search)
+            ->orderBy('created_at', 'desc')
+            ->take(20) // return limited results for speed
+            ->get();
 
-    return response()->json($employees);
-}
-
+        return response()->json($employees);
+    }
 }

@@ -30,6 +30,7 @@ class Employee extends Authenticatable // or extends User
         'password',
         'employee_id',
         'address_id',
+        'image',
     ];
 
 

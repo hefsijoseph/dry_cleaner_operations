@@ -9,7 +9,7 @@
 
          {{-- 1. Update Form Action to 'update' route --}}
          {{-- 2. Pass the employee ID to the route --}}
-         <form action="{{ route('employees.update', $employee) }}" method="POST">
+         <form action="{{ route('employees.update', $employee) }}" method="POST" enctype="multipart/form-data">
              @csrf
              {{-- 2. Method Spoofing for PUT request --}}
              @method('PUT')
@@ -111,12 +111,26 @@
 
                      @foreach($roles as $key => $role)
                      {{-- Make sure you're using the correct ID column here (most likely $address->id) --}}
-                     <option value="{{ $role->name }}"
-                     {{ $employee->hasRole($role->name) ? "selected" : "" }}
-                     >{{ $role->name }}</option>
+                     <option value="{{ $role->name }}" {{ $employee->hasRole($role->name) ? "selected" : "" }}>{{ $role->name }}</option>
                      @endforeach
                  </select>
                  @error('role_id')
+                 <span class="text-danger">{{ $message }}</span>
+                 @enderror
+             </div>
+
+             <div class="mb-3">
+                 <label for="image" class="form-label">Employee Image</label>
+
+                 @if($employee->image)
+                 <div class="mb-2">
+                     <img src="{{ asset('storage/' . $employee->image) }}" width="100" height="100" style="object-fit: cover; border-radius: 50%;" alt="Employee Image">
+                 </div>
+                 @endif
+
+                 <input type="file" name="image" id="image" class="form-control" accept="image/*">
+
+                 @error('image')
                  <span class="text-danger">{{ $message }}</span>
                  @enderror
              </div>

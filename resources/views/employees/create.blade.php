@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <a href="{{ route('employees.index') }}" class="btn btn-info mb-3">Back</a>
 
-                    <form action="{{ route('employees.store') }}" method="POST">
+                    <form action="{{ route('employees.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         {{-- First Name --}}
@@ -95,7 +95,7 @@
                             @enderror
                         </div>
 
-                         <div class="mt-2">
+                        <div class="mt-2">
                             <label for="role_id">Roles:</label>
                             <select name="roles[]" id="role_id" class="form-control" **required** multiple>
                                 {{-- Set the value to NULL (or keep it empty) and remove 'selected' --}}
@@ -108,6 +108,16 @@
                                 @endforeach
                             </select>
                             @error('role_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Employee Image</label>
+
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*">
+
+                            @error('image')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
